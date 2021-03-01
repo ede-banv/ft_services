@@ -16,6 +16,7 @@
 	#stop le nginx par defaut de la vm (ou pas)
 	#sudo chown (et on remplace $HOME/.kube par $HOME/.minikube)
 
+#https://forhjy.medium.com/42-ft-service-how-to-install-kubernetes-metallb-30d66f92d726
 #installer load balancer (metallb)
 #creer secret
 #apply metallb.yaml (ds srcs)
