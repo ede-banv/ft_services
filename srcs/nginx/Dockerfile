@@ -3,9 +3,10 @@ FROM  alpine
 #https://wiki.alpinelinux.org/wiki/Nginx
 RUN apk update && apk add nginx openrc --no-cache &&\
 adduser -D -g 'www' www && mkdir /www && chown -R www:www /var/lib/nginx && chown -R www:www /www &&\
-mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
+mkdir /run/nginx && mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
 COPY nginx.conf /etc/nginx/
-RUN mkdir -p /run/nginx
+
+#add ssh
 
 #start le service ds le container?
 #NO ENTRYPOINT! >:(
@@ -13,3 +14,7 @@ RUN mkdir -p /run/nginx
 #CMD rc-service nginx start
 #CMD ["nginx", "-g", "daemon off;"]
 CMD /usr/sbin/nginx -g "daemon off;"
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 22
