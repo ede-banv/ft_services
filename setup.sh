@@ -12,7 +12,7 @@
 
 
 #if ! kubectl version 2>/dev/null 1>&2 ; then
-	#minikube start --driver=docker
+	#minikube start --driver=docker (reinstaller minikube)
 	#stop le nginx par defaut de la vm (ou pas)
 	#sudo chown (et on remplace $HOME/.kube par $HOME/.minikube)
 #fi

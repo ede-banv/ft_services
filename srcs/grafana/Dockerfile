@@ -1,3 +1,3 @@
-FROM alpine
+FROM  alpine:3.13
 
 EXPOSE 300
