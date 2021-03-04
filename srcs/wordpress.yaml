@@ -1,33 +1,33 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: wordpress
 spec:
   selector:
-    app: MyApp
+    app: wordpress
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 9376
+      port: 5050
+      targetPort: 9376 #est-ce que c'est necesaire dans ce cas?
 ----------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: wordpress
   labels:
-    app: nginx
+    app: wordpress
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: wordpress
   template:
     metadata:
       labels:
-        app: nginx
+        app: wordpress
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.7.9
+      - name: wordpress
+        image: wordpress_img
         ports:
-        - containerPort: 80
+        - containerPort: 5050

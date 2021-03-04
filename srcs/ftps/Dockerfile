@@ -1,7 +1,7 @@
 FROM  alpine:3.13
 
 #https://wiki.alpinelinux.org/wiki/FTP
-RUN apk add openssl vsftpd && rc-update add vsftpd default && rc-service vsftpd restart
+RUN apk add --no-cache openrc openssl vsftpd && rc-update add vsftpd default && rc-service vsftpd restart
 COPY vsftpd.conf /etc/
 
 #for ftp to be ftps it requires a tls/ssl encryption
