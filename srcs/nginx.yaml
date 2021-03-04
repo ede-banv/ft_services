@@ -1,12 +1,28 @@
-apiVersion: apps/v1
-kind: service
+#https://kubernetes.io/fr/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
 metadata:
   name: nginx
 spec:
   selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376 #????????????
+----------------
+#https://kubernetes.io/fr/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
     matchLabels:
       app: nginx
-  replicas: 1 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
@@ -14,6 +30,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx_img
+        pullPolicy: Never
         ports:
         - containerPort: 80

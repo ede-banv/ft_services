@@ -7,7 +7,7 @@ COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY index.html /var/www/
 
 #add ssl
-#RUN openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/ssl/private/nginx-key.key -out /etc/ssl/certs/nginx-cert.crt -subj "/C=FR/ST=PARIS/L=PARIS/O=42/OU=STUDENT/CN=ede-ban"
+RUN openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/ssl/private/nginx-key.key -out /etc/ssl/certs/nginx-cert.crt -subj "/C=FR/ST=PARIS/L=PARIS/O=42/OU=STUDENT/CN=ede-banv"
 #start le service ds le container?
 #NO ENTRYPOINT! >:(
 #https://stackoverflow.com/questions/24241292/dockerized-nginx-is-not-starting
@@ -16,5 +16,4 @@ COPY index.html /var/www/
 #CMD /usr/sbin/nginx -g "daemon off;"
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 80 443
