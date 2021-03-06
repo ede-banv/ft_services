@@ -1,17 +1,23 @@
-#https://kubernetes.io/fr/docs/concepts/services-networking/service/
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx
+  annotations:
+    metallb.universe.tf/allow-shared-ip: shared
 spec:
+  type: LoadBalancer
   selector:
     app: nginx
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
-      targetPort: 9376 #????????????
-----------------
-#https://kubernetes.io/fr/docs/concepts/workloads/controllers/deployment/
+      targetPort: 80
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 443
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -31,6 +37,7 @@ spec:
       containers:
       - name: nginx
         image: nginx_img
-        pullPolicy: Never
+        imagePullPolicy: Never
         ports:
         - containerPort: 80
+        - containerPort: 443

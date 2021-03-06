@@ -3,13 +3,13 @@ kind: Service
 metadata:
   name: ftps
 spec:
+  type: LoadBalancer
   selector:
     app: ftps
   ports:
     - protocol: TCP
       port: 21
-      targetPort: 9376 #????????????
-----------------
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,5 +29,6 @@ spec:
       containers:
       - name: ftps
         image: ftps_img
+        imagePullPolicy: Never
         ports:
         - containerPort: 21
