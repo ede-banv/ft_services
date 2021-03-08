@@ -1,2 +1,2 @@
 rc-service vsftpd start
-sleep infinity
+tail -f /dev/null
