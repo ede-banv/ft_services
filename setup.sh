@@ -19,7 +19,7 @@ function minikube_start {
 	if ! kubectl version 2>/dev/null 1>&2 ; then
 		echo "Starting minikube..."
 		minikube start --driver=docker #(reinstaller minikube)
-		sudo service nginx stop
+		service nginx stop
 	fi
 }
 
