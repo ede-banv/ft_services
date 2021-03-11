@@ -7,11 +7,11 @@ function delete_services {
 	#kubectl delete --all nginx
 	kubectl delete -f srcs/nginx.yaml
 	kubectl delete -f srcs/ftps.yaml
-	#kubectl delete --all wordpress
-	#kubectl delete --all phpmyadmin
-	#kubectl delete --all mysql
-	#kubectl delete --all influxdb
-	#kubectl delete --all grafana
+	kubectl delete -f srcs/wordpress.yaml
+	kubectl delete -f srcs/phpmyadmin.yaml
+	#kubectl delete --all mysql.yaml
+	#kubectl delete --all influxdb.yaml
+	#kubectl delete --all grafana.yaml
 	#kubectl delete --all ftps
 }
 
@@ -54,8 +54,8 @@ function build_images {
 	eval $(minikube docker-env)
 	#docker build ./srcs/{norm du service}
 	docker build ./srcs/nginx -t nginx_img
-	#docker build ./srcs/wordpress -t wordpress_img
-	#docker build ./srcs/phpmyadmin -t phpmyadmin_img
+	docker build ./srcs/wordpress -t wordpress_img
+	docker build ./srcs/phpmyadmin -t phpmyadmin_img
 	#docker build ./srcs/mysql -t mysql_img
 	#docker build ./srcs/influxdb -t influxdb_img
 	#docker build ./srcs/grafana -t grafana_img
@@ -71,8 +71,8 @@ function create_services {
 	#on cree les services:
 	#kubectl create -f srcs/{nom du service}.yaml
 	kubectl create -f srcs/nginx.yaml
-	#kubectl create -f srcs/wordpress.yaml
-	#kubectl create -f srcs/phpmyadmin.yaml
+	kubectl create -f srcs/wordpress.yaml
+	kubectl create -f srcs/phpmyadmin.yaml
 	#kubectl create -f srcs/mysql.yaml
 	#kubectl create -f srcs/influxdb.yaml
 	#kubectl create -f srcs/grafana.yaml
