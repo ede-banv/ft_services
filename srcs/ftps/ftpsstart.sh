@@ -1,2 +1,2 @@
-rc-service vsftpd start
+rc-service vsftpd restart
 tail -f /dev/null
