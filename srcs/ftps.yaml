@@ -13,7 +13,11 @@ spec:
       protocol: TCP
       port: 21
     - name: pasv
+      protocol: TCP
       port: 40000
+    - name: list
+      protocol: TCP
+      port: 20
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -38,3 +42,4 @@ spec:
         ports:
         - containerPort: 21
         - containerPort: 40000
+        - containerPort: 20
