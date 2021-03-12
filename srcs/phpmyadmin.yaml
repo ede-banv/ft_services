@@ -5,6 +5,7 @@ metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
 spec:
+  type: LoadBalancer
   selector:
     app: phpmyadmin
   ports:
@@ -29,7 +30,7 @@ spec:
     spec:
       containers:
       - name: phpmyadmin
-        image: phpmyadmin
+        image: phpmyadmin_img
         imagePullPolicy: Never
         ports:
         - containerPort: 5000

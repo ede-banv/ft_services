@@ -7,11 +7,11 @@ function delete_services {
 	#kubectl delete --all nginx
 	kubectl delete -f srcs/nginx.yaml
 	kubectl delete -f srcs/ftps.yaml
-	#kubectl delete --all wordpress
-	#kubectl delete --all phpmyadmin
-	#kubectl delete --all mysql
-	#kubectl delete --all influxdb
-	#kubectl delete --all grafana
+	kubectl delete -f srcs/wordpress.yaml
+	kubectl delete -f srcs/phpmyadmin.yaml
+	#kubectl delete --all mysql.yaml
+	#kubectl delete --all influxdb.yaml
+	#kubectl delete --all grafana.yaml
 	#kubectl delete --all ftps
 }
 
