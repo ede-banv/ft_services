@@ -19,6 +19,6 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-engl
 #create ssl certificates
 RUN openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/ssl/private/nginx-key.key -out /etc/ssl/certs/nginx-cert.crt -subj "/C=FR/ST=PARIS/L=PARIS/O=42/OU=STUDENT/CN=ede-banv"
 
-CMD rc-service phpmyadmin start
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
 
 EXPOSE 5000

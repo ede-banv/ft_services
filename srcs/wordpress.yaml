@@ -9,7 +9,8 @@ spec:
   selector:
     app: wordpress
   ports:
-    - protocol: TCP
+    - name: https
+      protocol: TCP
       port: 5050
 ---
 apiVersion: apps/v1
