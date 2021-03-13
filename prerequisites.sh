@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #sudo usermod -aG docker user42; newgrp docker
-#service nginx stop
+service nginx stop
 if ! minikube version | grep -i "v1.17.1" > /dev/null 2>&1 
 then
     printf "\u21E9  Installing minikube v1.17.1... "
