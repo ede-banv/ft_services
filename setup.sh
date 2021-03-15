@@ -3,16 +3,14 @@
 function delete_services {
 	echo "Cleaning services..."
 	#nettoyer tt pour actualiser:
-	#kubectl delete --all {nom du service}
-	#kubectl delete --all nginx
+	#kubectl delete -f {nom du service}
 	kubectl delete -f srcs/nginx.yaml
 	kubectl delete -f srcs/ftps.yaml
 	kubectl delete -f srcs/wordpress.yaml
 	kubectl delete -f srcs/phpmyadmin.yaml
-	#kubectl delete --all mysql.yaml
-	#kubectl delete --all influxdb.yaml
-	#kubectl delete --all grafana.yaml
-	#kubectl delete --all ftps
+	kubectl delete -f /srcs/mysql.yaml
+	#kubectl delete -f /srcs/influxdb.yaml
+	#kubectl delete -f /srcs/grafana.yaml
 }
 
 function minikube_start {
@@ -56,7 +54,7 @@ function build_images {
 	docker build ./srcs/nginx -t nginx_img
 	docker build ./srcs/wordpress -t wordpress_img
 	docker build ./srcs/phpmyadmin -t phpmyadmin_img
-	#docker build ./srcs/mysql -t mysql_img
+	docker build ./srcs/mysql -t mysql_img
 	#docker build ./srcs/influxdb -t influxdb_img
 	#docker build ./srcs/grafana -t grafana_img
 	docker build ./srcs/ftps -t ftps_img
@@ -73,7 +71,7 @@ function create_services {
 	kubectl create -f srcs/nginx.yaml
 	kubectl create -f srcs/wordpress.yaml
 	kubectl create -f srcs/phpmyadmin.yaml
-	#kubectl create -f srcs/mysql.yaml
+	kubectl create -f srcs/mysql.yaml
 	#kubectl create -f srcs/influxdb.yaml
 	#kubectl create -f srcs/grafana.yaml
 	kubectl create -f srcs/ftps.yaml
