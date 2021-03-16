@@ -20,6 +20,7 @@ COPY php_config.php /var/www/phpmyadmin/config.inc.php
 #create ssl certificates
 RUN openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/ssl/private/nginx-key.key -out /etc/ssl/certs/nginx-cert.crt -subj "/C=FR/ST=PARIS/L=PARIS/O=42/OU=STUDENT/CN=ede-banv"
 RUN rc-status
+
 ENTRYPOINT rc-service php-fpm7 start && nginx -g 'daemon off;'
 
 EXPOSE 5000
