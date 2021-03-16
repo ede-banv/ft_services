@@ -12,9 +12,9 @@ RUN apk add nginx && mkdir -p /run/nginx && rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/
 
 #install phpmyadmin
-RUN wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-english.tar.gz \
+RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-english.tar.gz \
     && mkdir /var/www/phpmyadmin && chown -R nginx:nginx /var/www/phpmyadmin \
-    && tar xzf phpMyAdmin-4.9.0.1-english.tar.gz --strip-components=1 -C /var/www/phpmyadmin
+    && tar xzf phpMyAdmin-5.0.2-english.tar.gz --strip-components=1 -C /var/www/phpmyadmin
 COPY php_config.php /var/www/phpmyadmin/config.inc.php
 
 #create ssl certificates

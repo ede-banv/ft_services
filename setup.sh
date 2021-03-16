@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 function delete_services {
+	if ! kubectl version 2>/dev/null 1>&2 ; then
+		return
+	fi
 	echo "Cleaning services..."
 	#nettoyer tt pour actualiser:
 	#kubectl delete -f {nom du service}

@@ -20,6 +20,6 @@ RUN  cd /var/www && wget http://wordpress.org/latest.tar.gz && tar -xzvf latest.
     && rm latest.tar.gz && chmod -R 755 /var/www/wordpress
 COPY wp-config.php .
 
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+ENTRYPOINT service php-fpm7 start && nginx -g 'daemon off;'
 
 EXPOSE 5050
