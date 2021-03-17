@@ -10,5 +10,5 @@ echo "SET password FOR '${DB_USER}'@'%' = password('${DB_PASSWORD}');" | mysql -
 echo "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';" | mysql -u root
 echo "FLUSH PRIVILEGES;" | mysql -u root
 
-mysql wordpress -u root < /start/wordpress.sql
+#mysql wordpress -u root < /start/wordpress.sql
 tail -f /dev/null
