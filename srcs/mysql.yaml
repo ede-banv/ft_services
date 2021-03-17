@@ -5,11 +5,12 @@ metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
 spec:
+  type: ClusterIP
   selector:
     app: mysql
   ports:
     - protocol: TCP
-      port: 80
+      port: 3306
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,5 +32,26 @@ spec:
       - name: mysql
         image: mysql_img
         imagePullPolicy: Never
+        env:
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: db-id
+                key: name
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: db-id
+                key: user
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-id
+                key: password
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: db-id
+                key: host
         ports:
-        - containerPort: 80
+        - containerPort: 3306

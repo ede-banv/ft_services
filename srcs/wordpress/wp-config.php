@@ -21,24 +21,22 @@
 
 // ** Réglages MySQL - Votre hébergeur doit vous fournir ces informations. ** //
 /** Nom de la base de données de WordPress. */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', '__DB_NAME__' );
 
 /** MySQL database username */
-define( 'DB_USER', 'ede-banv' );
+define( 'DB_USER', '__DB_USER__' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'owowhatsthis' );
+define( 'DB_PASSWORD', '__DB_PASSWORD__' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', '__DB_HOST__' );
 
-/** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
-define('DB_CHARSET', 'utf8');
+/** Database Charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8' );
 
-/** Type de collation de la base de données.
-  * N’y touchez que si vous savez ce que vous faites.
-  */
-define('DB_COLLATE', '');
+/** The Database Collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
 
 /**#@+
  * Clés uniques d’authentification et salage.
@@ -84,7 +82,7 @@ $table_prefix = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', false);
+define('WP_DEBUG', true);
 
 /* C’est tout, ne touchez pas à ce qui suit ! Bonne publication. */
 

@@ -88,6 +88,14 @@ bash prerequisites.sh
 delete_services
 minikube_start
 install_metallb
+
+DB_NAME=wordpress; DB_USER=ede-banv; DB_PASSWORD=cokinou; DB_HOST=mysql;
+kubectl create secret generic db-id \
+	--from-literal=name=${DB_NAME} \
+	--from-literal=user=${DB_USER} \
+	--from-literal=password=${DB_PASSWORD} \
+	--from-literal=host=${DB_HOST}
+
 build_images
 create_services
 dashboard_start

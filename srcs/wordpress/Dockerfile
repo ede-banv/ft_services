@@ -19,6 +19,8 @@ RUN  cd /var/www && wget http://wordpress.org/latest.tar.gz && tar -xzvf latest.
     && rm latest.tar.gz && chmod -R 755 /var/www/wordpress
 COPY wp-config.php /var/www/wordpress/
 RUN rc-status
-ENTRYPOINT service php-fpm7 start && nginx -g 'daemon off;'
+
+COPY init_wp.sh /tmp/
+ENTRYPOINT ["sh", "/tmp/init_wp.sh"]
 
 EXPOSE 5050
