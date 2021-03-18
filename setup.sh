@@ -89,12 +89,16 @@ delete_services
 minikube_start
 install_metallb
 
-DB_NAME=wordpress; DB_USER=ede-banv; DB_PASSWORD=cokinou; DB_HOST=mysql;
+DB_NAME=wordpress; DB_USER=ede-banv; DB_PASSWORD=cokinou; DB_HOST=mysql
+IDB_NAME=grafana; IDB_USER=grandmaster; IDB_PASSWORD=42
 kubectl create secret generic db-id \
 	--from-literal=name=${DB_NAME} \
 	--from-literal=user=${DB_USER} \
 	--from-literal=password=${DB_PASSWORD} \
-	--from-literal=host=${DB_HOST}
+	--from-literal=host=${DB_HOST} \
+	--from-literal=idb-name=${IDB_NAME} \
+	--from-literal=idb-user=${IDB_USER} \
+	--from-literal=idb-password=${IDB_PASSWORD} \
 
 build_images
 create_services
