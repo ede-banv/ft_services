@@ -1,0 +1,12 @@
+apiVersion: 1
+datasources:
+- name: __DB_NAME__
+  type: influxdb
+  access: proxy
+  url: http://influxdb:8086
+  database: __DB_NAME__
+  basicAuth: true
+  basicAuthUser: __DB_USER__
+  basicAuthPassword: __DB_PASSWORD__
+  version: 1
+  editable: true

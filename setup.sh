@@ -5,22 +5,20 @@ function delete_services {
 		return
 	fi
 	echo "Cleaning services..."
-	#nettoyer tt pour actualiser:
 	#kubectl delete -f {nom du service}
 	kubectl delete -f srcs/nginx.yaml
 	kubectl delete -f srcs/ftps.yaml
 	kubectl delete -f srcs/wordpress.yaml
 	kubectl delete -f srcs/phpmyadmin.yaml
 	kubectl delete -f /srcs/mysql.yaml
-	#kubectl delete -f /srcs/influxdb.yaml
-	#kubectl delete -f /srcs/grafana.yaml
+	kubectl delete -f /srcs/influxdb.yaml
+	kubectl delete -f /srcs/grafana.yaml
 }
 
 function minikube_start {
 	if ! kubectl version 2>/dev/null 1>&2 ; then
 		echo "Starting minikube..."
-		minikube start --driver=docker #(reinstaller minikube)
-		#service nginx stop
+		minikube start --driver=docker
 	fi
 }
 
@@ -45,7 +43,6 @@ function install_metallb {
 	kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml > /dev/null 2>&1 ;
     kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml > /dev/null 2>&1 ;
     kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" > /dev/null 2>&1
-	#apply metallb.yaml (ds srcs)
 	kubectl apply -f ./srcs/metallb.yaml
 	
 }
@@ -58,25 +55,20 @@ function build_images {
 	docker build ./srcs/wordpress -t wordpress_img
 	docker build ./srcs/phpmyadmin -t phpmyadmin_img
 	docker build ./srcs/mysql -t mysql_img
-	#docker build ./srcs/influxdb -t influxdb_img
-	#docker build ./srcs/grafana -t grafana_img
+	docker build ./srcs/influxdb -t influxdb_img
+	docker build ./srcs/grafana -t grafana_img
 	docker build ./srcs/ftps -t ftps_img
 }
 
-#creer DB et user pr wordpress et host mysql (ou pas)
-
-#creer un autre secret (ou pas) si variable env , sinon + simple
-
 function create_services {
 	echo "Applying yaml files and creating services..."
-	#on cree les services:
 	#kubectl create -f srcs/{nom du service}.yaml
 	kubectl create -f srcs/nginx.yaml
 	kubectl create -f srcs/wordpress.yaml
 	kubectl create -f srcs/phpmyadmin.yaml
 	kubectl create -f srcs/mysql.yaml
-	#kubectl create -f srcs/influxdb.yaml
-	#kubectl create -f srcs/grafana.yaml
+	kubectl create -f srcs/influxdb.yaml
+	kubectl create -f srcs/grafana.yaml
 	kubectl create -f srcs/ftps.yaml
 }
 
