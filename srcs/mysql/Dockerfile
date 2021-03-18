@@ -1,8 +1,9 @@
 FROM  alpine:3.13
 
-RUN apk update && apk add mysql mysql-client openrc --no-cache && rc-status \
+RUN apk update && apk add mysql mysql-client openrc --no-cache && rc-status && \
     touch /run/openrc/softlevel
 
+COPY wordpress.sql /tmp/
 COPY run.sh /tmp/
 ENTRYPOINT [ "sh" , "/tmp/run.sh"]
 

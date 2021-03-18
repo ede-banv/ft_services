@@ -32,5 +32,11 @@ spec:
       - name: phpmyadmin
         image: phpmyadmin_img
         imagePullPolicy: Never
+        env:
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: db-id
+                key: host
         ports:
         - containerPort: 5000
