@@ -38,6 +38,22 @@ spec:
       - name: nginx
         image: nginx_img
         imagePullPolicy: Never
+        env:
+          - name: IDB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: db-id
+                key: idb-name
+          - name: IDB_USER
+            valueFrom:
+              secretKeyRef:
+                name: db-id
+                key: idb-user
+          - name: IDB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-id
+                key: idb-password
         ports:
         - containerPort: 80
         - containerPort: 443
