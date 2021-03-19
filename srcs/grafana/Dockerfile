@@ -8,8 +8,8 @@ COPY grafana.ini /etc/
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-key.key -out /etc/ssl/certs/nginx-cert.crt -subj "/C=FR/ST=PARIS/L=PARIS/O=42/OU=STUDENT/CN=ede-banv"
 
-COPY dashboard.yaml /usr/share/grafana/conf/provisioning/datasources/
-COPY database.yaml /usr/share/grafana/conf/provisioning/dashboards/
+COPY dashboard.yaml /usr/share/grafana/conf/provisioning/dashboards/
+COPY database.yaml /usr/share/grafana/conf/provisioning/datasources/
 
 COPY init_grf.sh /tmp/
 ENTRYPOINT ["sh", "/tmp/init_grf.sh"]
