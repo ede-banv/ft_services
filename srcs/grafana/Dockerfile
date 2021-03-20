@@ -15,6 +15,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private
 
 COPY dashboard.yaml /usr/share/grafana/conf/provisioning/dashboards/
 COPY database.yaml /usr/share/grafana/conf/provisioning/datasources/
+COPY grafana.db /var/lib/grafana/data/
 
 COPY init_grf.sh /tmp/
 ENTRYPOINT ["sh", "/tmp/init_grf.sh"]
