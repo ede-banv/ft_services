@@ -13,5 +13,5 @@ sed s/__DB_PASSWORD__/$IDB_PASSWORD/g /etc/telegraf.conf -i
 
 rc-service grafana start
 rc-service telegraf start
-
+grafana-server --homepath=/usr/share/grafana/ --config=/usr/share/grafana/conf/custom.ini >/dev/null 2>&1
 tail -f /dev/null
