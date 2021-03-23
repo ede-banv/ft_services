@@ -1,7 +1,7 @@
 FROM  alpine:3.13
 
 #https://wiki.alpinelinux.org/wiki/FTP
-RUN apk add --no-cache openrc openssl vsftpd && rc-update add vsftpd default \
+RUN apk update && apk add --no-cache openrc openssl vsftpd && rc-update add vsftpd default \
     && mkdir -p /run/openrc && touch /run/openrc/softlevel && rm /etc/vsftpd/vsftpd.conf && rc-status
 COPY vsftpd.conf /etc/vsftpd/
 
