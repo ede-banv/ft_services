@@ -1,7 +1,8 @@
 FROM  alpine:3.13
 
 #https://wiki.alpinelinux.org/wiki/FTP
-RUN apk update && apk add --no-cache openrc openssl vsftpd && rc-update add vsftpd default \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    apk update && apk add --no-cache openrc openssl vsftpd && rc-update add vsftpd default \
     && mkdir -p /run/openrc && touch /run/openrc/softlevel && rm /etc/vsftpd/vsftpd.conf && rc-status
 COPY vsftpd.conf /etc/vsftpd/
 
@@ -22,4 +23,4 @@ RUN adduser --disabled-password --home etc/vsftpd/home ftps_ede-banv && \
 COPY ftpsstart.sh /tmp/
 ENTRYPOINT [ "sh" ,"/tmp/ftpsstart.sh" ]
 
-EXPOSE 21
+EXPOSE 21 21000 21001

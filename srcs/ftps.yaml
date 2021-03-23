@@ -9,7 +9,7 @@ spec:
   selector:
     app: ftps
   ports:
-    - name: http
+    - name: ftps
       protocol: TCP
       port: 21
     - name: pasv
@@ -18,9 +18,6 @@ spec:
     - name: pasv1
       protocol: TCP
       port: 21001
-    - name: list
-      protocol: TCP
-      port: 20
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -60,6 +57,8 @@ spec:
                 key: idb-password
         ports:
         - containerPort: 21
+          name: ftps
         - containerPort: 21000
+          name: pasv
         - containerPort: 21001
-        - containerPort: 20
+          name: pasv1
