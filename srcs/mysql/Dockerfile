@@ -8,6 +8,8 @@ RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/comm
     rm /etc/telegraf.conf
 COPY telegraf.conf /etc/
 
+RUN rc-status
+
 COPY wordpress.sql /tmp/
 COPY run.sh /tmp/
 ENTRYPOINT [ "sh" , "/tmp/run.sh"]

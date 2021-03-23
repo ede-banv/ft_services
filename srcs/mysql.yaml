@@ -68,20 +68,5 @@ spec:
               secretKeyRef:
                 name: db-id
                 key: idb-password
-          - name: IDB_NAME
-            valueFrom:
-              secretKeyRef:
-                name: db-id
-                key: idb-name
-          - name: IDB_USER
-            valueFrom:
-              secretKeyRef:
-                name: db-id
-                key: idb-user
-          - name: IDB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: db-id
-                key: idb-password
         ports:
         - containerPort: 3306
