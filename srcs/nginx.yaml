@@ -54,6 +54,11 @@ spec:
               secretKeyRef:
                 name: db-id
                 key: idb-password
+        livenessProbe:
+          exec:
+            command:
+          initialDelaySeconds: 10
+          periodSeconds: 10
         ports:
         - containerPort: 80
         - containerPort: 443
