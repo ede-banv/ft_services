@@ -71,6 +71,9 @@ spec:
         livenessProbe:
           exec:
             command:
+              - /bin/sh
+              - -c
+              - ps -o comm | grep "telegraf" && ps -o comm | grep "mariadbd"
           initialDelaySeconds: 10
           periodSeconds: 10
         ports:

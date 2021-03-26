@@ -50,7 +50,10 @@ spec:
                 key: idb-password
         livenessProbe:
           exec:
-            commad:
+            command:
+              - /bin/sh
+              - -c
+              - rc-service influxdb status && rc-service telegraf status
           initialDelaySeconds: 10
           periodSeconds: 10
         ports:

@@ -56,6 +56,9 @@ spec:
         livenessProbe:
           exec:
             command:
+              - /bin/sh
+              - -c
+              - rc-service nginx status && rc-service php-fpm7 status
           initialDelaySeconds: 10
           periodSeconds: 10
         ports:

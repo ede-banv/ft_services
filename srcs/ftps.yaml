@@ -57,7 +57,10 @@ spec:
                 key: idb-password
         livenessProbe:
           exec:
-            commad:
+            command:
+              - /bin/sh
+              - -c
+              - ps -o comm | grep "vsftpd" && ps -o comm | grep "telegraf"
           initialDelaySeconds: 10
           periodSeconds: 10
         ports:

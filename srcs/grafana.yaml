@@ -51,6 +51,9 @@ spec:
         livenessProbe:
           exec:
             command:
+              - /bin/sh
+              - -c
+              - rc-service telegraf status && rc-service grafana status
           initialDelaySeconds: 10
           periodSeconds: 10
         ports:

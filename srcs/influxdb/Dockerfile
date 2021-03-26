@@ -1,8 +1,14 @@
 FROM  alpine:3.13
 
+######################
+#  Install InfluxDB  #
+######################
 RUN apk update && apk add influxdb influxdb-openrc influxdb-doc openrc && \
     mkdir -p /run/openrc && touch /run/openrc/softlevel && rc-status
 
+######################
+#   Setup Telegraf   #
+######################
 RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
     telegraf-openrc --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
     rm /etc/telegraf.conf
