@@ -87,4 +87,4 @@ build_images
 create_services
 dashboard_start
 IP=$(kubectl get node -o=custom-columns='DATA:status.addresses[0].address' | sed -n 2p)
-echo "IP :" $IP #(on affiche l'IP du LB pr etre sur que ca s'est bien fait)
+echo "IP :" $IP
