@@ -53,7 +53,7 @@ spec:
             command:
               - /bin/sh
               - -c
-              - rc-service telegraf status && rc-service grafana status
+              - rc-service telegraf status && ps -o comm | grep "grafana-server"
           initialDelaySeconds: 10
           periodSeconds: 10
         ports:

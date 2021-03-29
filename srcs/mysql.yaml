@@ -78,3 +78,7 @@ spec:
           periodSeconds: 10
         ports:
         - containerPort: 3306
+        volumes:
+          - name: mysql_volume
+            persistentVolumeClaim:
+              claimName: mysql-pvc

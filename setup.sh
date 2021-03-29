@@ -5,7 +5,6 @@ function delete_services {
 		return
 	fi
 	echo "Cleaning services..."
-	#kubectl delete -f {nom du service}
 	kubectl delete -f srcs/nginx.yaml
 	kubectl delete -f srcs/ftps.yaml
 	kubectl delete -f srcs/wordpress.yaml
@@ -24,22 +23,14 @@ function minikube_start {
 
 function install_metallb {
 	echo "Installing MetalLB..."
-	# see what changes would be made, returns nonzero returncode if different
 	kubectl get configmap kube-proxy -n kube-system -o yaml | \
 	sed -e "s/strictARP: false/strictARP: true/" | \
 	kubectl diff -f - -n kube-system
 
-	# actually apply the changes, returns nonzero returncode on errors only
 	kubectl get configmap kube-proxy -n kube-system -o yaml | \
 	sed -e "s/strictARP: false/strictARP: true/" | \
 	kubectl apply -f - -n kube-system
-	#https://forhjy.medium.com/42-ft-service-how-to-install-kubernetes-metallb-30d66f92d726
-	#installer load balancer (metallb)
-	#kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.9.3/manifests/namespace.yaml
-	#kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.9.3/manifests/metallb.yaml
-	#creer secret
-	#kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-	
+
 	kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml > /dev/null 2>&1 ;
     kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml > /dev/null 2>&1 ;
     kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" > /dev/null 2>&1
@@ -50,7 +41,6 @@ function install_metallb {
 function build_images {
 	echo "Building images..."
 	eval $(minikube docker-env)
-	#docker build ./srcs/{norm du service}
 	docker build ./srcs/nginx -t nginx_img
 	docker build ./srcs/wordpress -t wordpress_img
 	docker build ./srcs/phpmyadmin -t phpmyadmin_img
@@ -62,12 +52,13 @@ function build_images {
 
 function create_services {
 	echo "Applying yaml files and creating services..."
-	#kubectl create -f srcs/{nom du service}.yaml
 	kubectl create -f srcs/nginx.yaml
 	kubectl create -f srcs/wordpress.yaml
 	kubectl create -f srcs/phpmyadmin.yaml
 	kubectl create -f srcs/mysql.yaml
+	kubectl create -f srcs/mysql-pv.yaml
 	kubectl create -f srcs/influxdb.yaml
+	kubectl create -f srcs/influxdb-pv.yaml
 	kubectl create -f srcs/grafana.yaml
 	kubectl create -f srcs/ftps.yaml
 }

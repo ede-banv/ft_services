@@ -58,3 +58,7 @@ spec:
           periodSeconds: 10
         ports:
         - containerPort: 8086
+        volumes:
+          - name: influxdb_volume
+            persistentVolumeClaim:
+              claimName: influxdb-pvc
