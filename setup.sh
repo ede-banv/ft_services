@@ -56,9 +56,7 @@ function create_services {
 	kubectl create -f srcs/wordpress.yaml
 	kubectl create -f srcs/phpmyadmin.yaml
 	kubectl create -f srcs/mysql.yaml
-	kubectl create -f srcs/mysql-pv.yaml
 	kubectl create -f srcs/influxdb.yaml
-	kubectl create -f srcs/influxdb-pv.yaml
 	kubectl create -f srcs/grafana.yaml
 	kubectl create -f srcs/ftps.yaml
 }
