@@ -7,7 +7,5 @@ sed s/__DB_PASSWORD__/$IDB_PASSWORD/g /etc/telegraf.conf -i
 sed "s/;admin_user = admin/admin_user = $IDB_USER/g" /usr/share/grafana/conf/custom.ini -i
 sed "s/;admin_password = admin/admin_password = $IDB_PASSWORD/g" /usr/share/grafana/conf/custom.ini -i
 
-#rc-service grafana start
 rc-service telegraf start
-#telegraf &
 grafana-server --homepath=/usr/share/grafana/ --config=/usr/share/grafana/conf/custom.ini >/dev/null 2>&1

@@ -18,10 +18,3 @@ mysql wordpress -u root < /tmp/wordpress.sql
 rc-service telegraf start
 
 tail -f /dev/null
-
-#if [ ! -f /var/lib/mysql/wpNewUsers ]; then
-	#echo "done" >> /var/lib/mysql/wpNewUsers
-	#mysql -h localhost -e "$(cat $tmpsql)"
-	#mysql wordpress -u root < wordpress.sql
-	#mysql wordpress -u root < users.sql
-#fi

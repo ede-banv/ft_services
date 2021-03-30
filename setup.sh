@@ -62,7 +62,7 @@ function create_services {
 }
 
 function dashboard_start {
-	minikube dashboard & #(ajouter '&' pour que ca run en background ->moins visuel)
+	minikube dashboard &
 }
 
 bash prerequisites.sh
