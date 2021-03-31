@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 function delete_services {
 	if ! kubectl version 2>/dev/null 1>&2 ; then
