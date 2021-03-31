@@ -18,6 +18,8 @@ function minikube_start {
 	if ! kubectl version 2>/dev/null 1>&2 ; then
 		echo "Starting minikube..."
 		minikube start --driver=docker
+		./setup.sh
+		exit
 	fi
 }
 
